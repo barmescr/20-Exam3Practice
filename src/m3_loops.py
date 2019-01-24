@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Cleo Barmes.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -136,6 +136,11 @@ def run_test_practice_problem3():
     #             that they are adequate tests!
     ###########################################################################
 
+    # 15th test:
+    (st.SimpleTestCase(practice_problem3, [5, 5, 5], [1, 2, 3, 4, 5]))
+
+    # 16th test:
+    st.SimpleTestCase(practice_problem3, [1, 5, 0.5], [1, 2, 3, 4, 5])
 
 def practice_problem3(start, n, threshold):
     """
@@ -209,7 +214,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ###########################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ###########################################################################
@@ -218,6 +223,15 @@ def practice_problem3(start, n, threshold):
     #    TIME ESTIMATE:   < 15 minutes.
     ###########################################################################
 
+    funk = []
+    while True:
+        if len(funk) >= n:
+            break
+        if (math.cos(start) + math.sin(start)) > threshold:
+                funk = funk + [start]
+        start = start + 1
+
+    return funk
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
