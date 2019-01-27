@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Cleo Barmes.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -135,7 +135,7 @@ def practice_problem4a(sequence):
       :type sequence: list | tuple | string
     """
     ###########################################################################
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     ###########################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
@@ -143,6 +143,11 @@ def practice_problem4a(sequence):
     #    TIME ESTIMATE:   15 minutes.
     ###########################################################################
 
+    doubles = []
+    for k in range(1, len(sequence)):
+        if sequence[k] == sequence[k -1]:
+            doubles = doubles + [(k - 1)]
+    return doubles
 
 def run_test_practice_problem4b():
     """ Tests the    practice_problem4b    function. """
@@ -198,7 +203,7 @@ def practice_problem4b(sequence):
       :type sequence: (list | tuple) of (float | int)
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     ###########################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
@@ -206,6 +211,11 @@ def practice_problem4b(sequence):
     #    TIME ESTIMATE:   10 minutes.
     ###########################################################################
 
+    largest = sequence[0]
+    for k in range(0, len(sequence), 2):
+        if sequence[k] > largest:
+            largest = sequence[k]
+    return largest
 
 def run_test_practice_problem4c():
     """ Tests the    practice_problem4c    function. """
@@ -296,7 +306,7 @@ def practice_problem4c(points):
       :rtype: rg.Point | string
     """
     ###########################################################################
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     # IMPORTANT: This problem is your LOWEST PRIORITY for preparing
@@ -308,6 +318,19 @@ def practice_problem4c(points):
     #    TIME ESTIMATE:   15 minutes.
     ###########################################################################
 
+    new = list(points)
+    for k in range(len(points)):
+        x = points[k].x
+        y = points[k].y
+        if is_prime(x) & is_prime(y):
+            z = x
+            x = y
+            y = z
+            new_point = rg.Point(x, y)
+            new[k] = new_point
+            points = tuple(new)
+            return points[k]
+    return 'Not found'
 
 def run_test_practice_problem4d():
     """ Tests the    practice_problem4d    function. """
@@ -392,13 +415,21 @@ def practice_problem4d(sequence):
       :rtype: int
     """
     ###########################################################################
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #     The testing code is already written for you (above).
     ###########################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ###########################################################################
+
+    summing = 0
+    for k in range(0, len(sequence) - 1):
+        if sequence[k] != sequence[k + 1]:
+            if is_prime(sequence[k]):
+                if is_prime(sequence[k + 1]):
+                    summing = summing + sequence[k]
+    return summing
 
 
 # -----------------------------------------------------------------------------

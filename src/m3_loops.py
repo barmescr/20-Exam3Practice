@@ -46,7 +46,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ###########################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -137,10 +137,25 @@ def run_test_practice_problem3():
     ###########################################################################
 
     # 15th test:
-    (st.SimpleTestCase(practice_problem3, [5, 5, 5], [1, 2, 3, 4, 5]))
+    expected1 = ([6, 7, 8, 13, 14])
+    test15 = practice_problem3(3, 5, 0.5)
+    print()
+    print('Test 15:')
+    print('  Expected:', expected1)
+    print('  Actual:  ', test15)
 
     # 16th test:
-    st.SimpleTestCase(practice_problem3, [1, 5, 0.5], [1, 2, 3, 4, 5])
+    expected1 = ([1, 7, 13, 14, 19])
+    test16 = practice_problem3(1, 5, 1)
+    print()
+    print('Test 16:')
+    print('  Expected:', expected1)
+    print('  Actual:  ', test16)
+
+    test_1 = (st.SimpleTestCase(practice_problem3, [5, 5, 5], [1, 2, 3, 4, 5]))
+
+    # 16th test:
+    test_2 = st.SimpleTestCase(practice_problem3, [1, 5, 0.5], [1, 2, 3, 4, 5])
 
 def practice_problem3(start, n, threshold):
     """

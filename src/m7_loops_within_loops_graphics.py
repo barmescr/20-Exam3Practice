@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Cleo Barmes.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -90,7 +90,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -102,6 +102,54 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+    x_original = point.x
+    x1 = point.x
+    x2 = point.x
+    y_original = point.y
+    y1= point.y
+    y2 = point.y
+
+    for k in range(n):
+        for j in range(k + 1):
+            center = rg.Point(x1, y1)
+            circle = rg.Circle(center, radius)
+            circle.fill_color = color
+            circle.attach_to(window)
+            left = rg.Point((center.x - radius), center.y)
+            right = rg.Point((center.x + radius), center.y)
+            stripe = rg.Line(left, right)
+            stripe.attach_to(window)
+            window.render()
+            x1 = x1 + (2 * radius)
+        x2 = x2 - radius
+        x1 = x2
+        y2 = y2 - (1.75 * radius)
+        y1 = y2
+
+    x1 = x_original
+    x2 = x_original
+    y1 = y_original
+    y2 = y_original
+
+    for z in range(n):
+        for h in range(z + 1):
+            center = rg.Point(x1, y1)
+            circle = rg.Circle(center, radius)
+            circle.fill_color = color
+            circle.attach_to(window)
+            left = rg.Point((center.x - radius), center.y)
+            right = rg.Point((center.x + radius), center.y)
+            stripe = rg.Line(left, right)
+            stripe.attach_to(window)
+            window.render()
+            x1 = x1 + (2 * radius)
+        x2 = x2 - radius
+        x1 = x2
+        y2 = y2 + (1.75 * radius)
+        y1 = y2
+
+
 
 
 def run_test_many_hourglasses():
@@ -164,7 +212,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -180,6 +228,33 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+    count = 0
+    length = square.length_of_each_side
+    center = square.center
+    upper_left = rg.Point(center.x - (length / 2), center.y - (length / 2))
+    bottom_right = rg.Point(center.x + (length / 2), center.y + (length / 2))
+    point = center
+
+    for a in range(m):
+        box = rg.Rectangle(upper_left, bottom_right)
+        box.attach_to(window)
+        window.render()
+        upper_left.x = upper_left.x + ((a + 1) * length)
+        bottom_right.x = bottom_right.x + ((a + 2) * length)
+        upper_left.y = upper_left.y - (length * 0.875)
+        bottom_right.y = bottom_right.y + (length * 0.875)
+
+    point.x = point.x - (length / 2)
+    for q in range(1, m + 1):
+        if count == len(colors):
+            count = 0
+        color = colors[count]
+        point.x = point.x + (length / 2)
+        hourglass(window, (q), point, (length / 2), color)
+        point.x = point.x + ((q) * length)
+        count = count + 1
+
 
 
 # -----------------------------------------------------------------------------
